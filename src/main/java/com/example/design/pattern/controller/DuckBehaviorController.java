@@ -16,7 +16,13 @@ public class DuckBehaviorController {
 
   @GetMapping("/speak")
   public void speak(@RequestParam(value = "duckType") String duckType) {
+    duckInterface.speak(duckType);
+  }
+
+  @GetMapping("/fly")
+  public void fly(@RequestParam(value = "duckType") String duckType) {
     System.out.println(duckType);
     duckInterface.speak(duckType);
   }
+
 }

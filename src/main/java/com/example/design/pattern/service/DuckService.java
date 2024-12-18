@@ -20,18 +20,14 @@ public class DuckService implements DuckInterface{
   }
 
   @Override
-  public void display(String duckType) {
-    getDuck(duckType).display();
-  }
-
-  @Override
   public void speak(String duckType) {
+    getDuck(duckType).display();
     getDuck(duckType).performSpeak();
-
   }
 
   @Override
   public void fly(String duckType) {
+    getDuck(duckType).display();
     getDuck(duckType).performFly();
   }
 }

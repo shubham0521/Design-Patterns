@@ -1,9 +1,10 @@
-package com.example.design.pattern.service;
+package com.example.design.pattern.service.factory;
 
 import com.example.design.pattern.behaviour.fly.FlyWithWings;
 import com.example.design.pattern.behaviour.speak.Quack;
 import org.springframework.stereotype.Component;
 
+@Component
 public class MallardDuck extends Duck {
 
   public MallardDuck() {
@@ -12,7 +13,7 @@ public class MallardDuck extends Duck {
   }
 
   @Override
-  void display() {
+  public void display() {
     System.out.println("I'm a mallard duck");
   }
 }

@@ -1,44 +1,37 @@
 package com.example.design.pattern.service;
 
+import com.example.design.pattern.service.factory.Duck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class DuckService implements DuckInterface{
 
+  @Autowired
+  List<Duck> ducks;
+
+  private Duck getDuck(String duckType) {
+    return ducks.stream()
+        .filter(duck -> duckType.equals(duck.getClass().getSimpleName()))
+        .findFirst()
+        .orElseThrow(() -> new RuntimeException("Duck not found"));
+  }
+
   @Override
   public void display(String duckType) {
-    Duck duck;
-    if (duckType.equals("Mallard")) {
-      duck = new MallardDuck();
-      duck.display();
-    } else {
-      duck = new RubberDuck();
-      duck.display();
-    }
+    getDuck(duckType).display();
   }
 
   @Override
   public void speak(String duckType) {
-    Duck duck;
-    if (duckType.equals("Mallard")) {
-      duck = new MallardDuck();
-      duck.performSpeak();
-    } else {
-      duck = new RubberDuck();
-      duck.performSpeak();
-    }
+    getDuck(duckType).performSpeak();
+
   }
 
   @Override
   public void fly(String duckType) {
-    Duck duck;
-    if (duckType.equals("Mallard")) {
-      duck = new MallardDuck();
-      duck.performFly();
-    } else {
-      duck = new RubberDuck();
-      duck.performFly();
-    }
+    getDuck(duckType).performFly();
   }
 }
